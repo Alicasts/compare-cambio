@@ -8,7 +8,7 @@ class CurrencyApiService {
 
   CurrencyApiService(this._dio);
 
-  Future<List<AvailableCurrencyDto>> fetchCurrencyData() async {
+  Future<List<AvailableCurrencyDto>> fetchCurrencyList() async {
     final response = await _dio.get('/currencies/available');
 
     if (response.statusCode == 200) {
