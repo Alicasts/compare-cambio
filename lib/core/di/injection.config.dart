@@ -18,6 +18,8 @@ import 'package:compare_cambio/features/currency/domain/repository/available_cur
     as _i1044;
 import 'package:compare_cambio/features/currency/domain/usecase/get_available_currencies_usecase.dart'
     as _i827;
+import 'package:compare_cambio/features/currency/presentation/home/home_view_model.dart'
+    as _i799;
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -42,6 +44,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i827.GetAvailableCurrenciesUseCase>(() =>
         _i827.GetAvailableCurrenciesUseCase(
             gh<_i1044.AvailableCurrencyRepository>()));
+    gh.factory<_i799.HomeViewModel>(
+        () => _i799.HomeViewModel(gh<_i827.GetAvailableCurrenciesUseCase>()));
     return this;
   }
 }
