@@ -16,6 +16,8 @@ import 'package:compare_cambio/features/currency/data/services/currency_api_serv
     as _i99;
 import 'package:compare_cambio/features/currency/domain/repository/available_currency_repository.dart'
     as _i1044;
+import 'package:compare_cambio/features/currency/domain/usecase/get_available_currencies_usecase.dart'
+    as _i827;
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -37,6 +39,9 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i99.CurrencyApiService(gh<_i361.Dio>()));
     gh.lazySingleton<_i1044.AvailableCurrencyRepository>(() =>
         _i892.AvailableCurrencyRepositoryImpl(gh<_i99.CurrencyApiService>()));
+    gh.factory<_i827.GetAvailableCurrenciesUseCase>(() =>
+        _i827.GetAvailableCurrenciesUseCase(
+            gh<_i1044.AvailableCurrencyRepository>()));
     return this;
   }
 }
