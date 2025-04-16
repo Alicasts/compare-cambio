@@ -1,9 +1,7 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/di/injection.dart';
-import '../../domain/model/available_comparison.dart';
 import '../home/home_view_model.dart';
 import '../widgets/currency_comparison_dropdown.dart';
 
