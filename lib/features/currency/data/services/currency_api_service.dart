@@ -1,3 +1,4 @@
+import 'package:compare_cambio/core/constants/constants.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import '../dto/available_comparison_dto.dart';
@@ -9,8 +10,7 @@ class CurrencyApiService {
   CurrencyApiService(this._dio);
 
   Future<List<AvailableComparisonDto>> fetchAvailableComparisons() async {
-    // final response = await _dio.get('/currencies/available');
-    final response = await _dio.get('json/available/');
+    final response = await _dio.get(Constants.availablePairsPath);
 
     if (response.statusCode == 200) {
       final data = Map<String, dynamic>.from(response.data);

@@ -1,6 +1,16 @@
+import 'package:hive/hive.dart';
+
+part 'available_comparison.g.dart';
+
+@HiveType(typeId: 1)
 class AvailableComparison {
+
+  @HiveField(0)
   final String pairCode;
+
+  @HiveField(1)
   final String label;
+
 
   AvailableComparison({
     required this.pairCode,

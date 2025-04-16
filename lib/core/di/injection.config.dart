@@ -1,4 +1,3 @@
-// dart format width=80
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
 // **************************************************************************
@@ -14,6 +13,8 @@ import 'package:compare_cambio/features/currency/data/repository/available_compa
     as _i125;
 import 'package:compare_cambio/features/currency/data/services/currency_api_service.dart'
     as _i99;
+import 'package:compare_cambio/features/currency/data/storage/local_available_comparison_storage_service.dart'
+    as _i1;
 import 'package:compare_cambio/features/currency/domain/repository/available_comparison_repository.dart.dart'
     as _i319;
 import 'package:compare_cambio/features/currency/domain/usecase/get_available_currencies_usecase.dart'
@@ -37,10 +38,15 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final networkModule = _$NetworkModule();
     gh.lazySingleton<_i361.Dio>(() => networkModule.dio());
+    gh.lazySingleton<_i1.LocalAvailableComparisonStorageService>(
+        () => _i1.LocalAvailableComparisonStorageService());
     gh.lazySingleton<_i99.CurrencyApiService>(
         () => _i99.CurrencyApiService(gh<_i361.Dio>()));
-    gh.lazySingleton<_i319.AvailableComparisonRepository>(() =>
-        _i125.AvailableComparisonRepositoryImpl(gh<_i99.CurrencyApiService>()));
+    gh.lazySingleton<_i319.AvailableComparisonRepository>(
+        () => _i125.AvailableComparisonRepositoryImpl(
+              gh<_i99.CurrencyApiService>(),
+              gh<_i1.LocalAvailableComparisonStorageService>(),
+            ));
     gh.factory<_i827.GetAvailableComparisonsUseCase>(() =>
         _i827.GetAvailableComparisonsUseCase(
             gh<_i319.AvailableComparisonRepository>()));
