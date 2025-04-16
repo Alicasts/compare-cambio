@@ -10,12 +10,12 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:compare_cambio/core/di/network_module.dart' as _i200;
-import 'package:compare_cambio/features/currency/data/repository/available_currency_repository_impl.dart'
-    as _i892;
+import 'package:compare_cambio/features/currency/data/repository/available_comparison_repository_impl.dart'
+    as _i125;
 import 'package:compare_cambio/features/currency/data/services/currency_api_service.dart'
     as _i99;
-import 'package:compare_cambio/features/currency/domain/repository/available_currency_repository.dart'
-    as _i1044;
+import 'package:compare_cambio/features/currency/domain/repository/available_comparison_repository.dart.dart'
+    as _i319;
 import 'package:compare_cambio/features/currency/domain/usecase/get_available_currencies_usecase.dart'
     as _i827;
 import 'package:compare_cambio/features/currency/presentation/home/home_view_model.dart'
@@ -39,13 +39,13 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i361.Dio>(() => networkModule.dio());
     gh.lazySingleton<_i99.CurrencyApiService>(
         () => _i99.CurrencyApiService(gh<_i361.Dio>()));
-    gh.lazySingleton<_i1044.AvailableCurrencyRepository>(() =>
-        _i892.AvailableCurrencyRepositoryImpl(gh<_i99.CurrencyApiService>()));
-    gh.factory<_i827.GetAvailableCurrenciesUseCase>(() =>
-        _i827.GetAvailableCurrenciesUseCase(
-            gh<_i1044.AvailableCurrencyRepository>()));
+    gh.lazySingleton<_i319.AvailableComparisonRepository>(() =>
+        _i125.AvailableComparisonRepositoryImpl(gh<_i99.CurrencyApiService>()));
+    gh.factory<_i827.GetAvailableComparisonsUseCase>(() =>
+        _i827.GetAvailableComparisonsUseCase(
+            gh<_i319.AvailableComparisonRepository>()));
     gh.factory<_i799.HomeViewModel>(
-        () => _i799.HomeViewModel(gh<_i827.GetAvailableCurrenciesUseCase>()));
+        () => _i799.HomeViewModel(gh<_i827.GetAvailableComparisonsUseCase>()));
     return this;
   }
 }

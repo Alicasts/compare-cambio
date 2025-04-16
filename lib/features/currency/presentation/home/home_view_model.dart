@@ -1,48 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/model/available_currency.dart';
+import '../../domain/model/available_comparison.dart';
 import '../../domain/usecase/get_available_currencies_usecase.dart';
 
 @injectable
 class HomeViewModel extends ChangeNotifier {
-  final GetAvailableCurrenciesUseCase _getCurrencies;
+  final GetAvailableComparisonsUseCase _getComparisons;
 
-  HomeViewModel(this._getCurrencies);
+  HomeViewModel(this._getComparisons);
 
   bool isLoading = false;
-  List<AvailableCurrency> currencies = [];
+  List<AvailableComparison> comparisons = [];
+  AvailableComparison? selectedComparison;
 
-  Future<void> fetchCurrencies() async {
+  Future<void> fetchComparisons() async {
     isLoading = true;
     notifyListeners();
 
     try {
-      currencies = await _getCurrencies();
+      comparisons = await _getComparisons();
     } catch (e) {
-      debugPrint('Error fetching currencies: $e');
-      currencies = [];
+      debugPrint('Error fetching list: $e');
+      comparisons = [];
     }
 
     isLoading = false;
     notifyListeners();
   }
 
-  AvailableCurrency? selectedBase;
-  AvailableCurrency? selectedTarget;
-
-  void selectBaseCurrency(AvailableCurrency? currency) {
-    selectedBase = currency;
-    // reseta o target se ele for igual ao novo base
-    if (selectedTarget?.code == currency?.code) {
-      selectedTarget = null;
-    }
+  void selectComparison(AvailableComparison? comparison) {
+    selectedComparison = comparison;
     notifyListeners();
   }
-
-  void selectTargetCurrency(AvailableCurrency? currency) {
-    selectedTarget = currency;
-    notifyListeners();
-  }
-
 }

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import '../dto/available_currency_dto.dart';
+import '../dto/available_comparison_dto.dart';
 
 @lazySingleton
 class CurrencyApiService {
@@ -8,13 +8,18 @@ class CurrencyApiService {
 
   CurrencyApiService(this._dio);
 
-  Future<List<AvailableCurrencyDto>> fetchCurrencyList() async {
-    final response = await _dio.get('/currencies/available');
+  Future<List<AvailableComparisonDto>> fetchAvailableComparisons() async {
+    // final response = await _dio.get('/currencies/available');
+    final response = await _dio.get('json/available/');
 
     if (response.statusCode == 200) {
-      final List<dynamic> data = response.data;
-      return data
-          .map((json) => AvailableCurrencyDto.fromJson(json))
+      final data = Map<String, dynamic>.from(response.data);
+
+      return data.entries
+          .map((entry) => AvailableComparisonDto(
+        pairCode: entry.key,
+        label: entry.value,
+      ))
           .toList();
     } else {
       throw Exception(

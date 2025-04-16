@@ -1,14 +1,14 @@
 import 'package:injectable/injectable.dart';
-import '../model/available_currency.dart';
-import '../repository/available_currency_repository.dart';
+import '../model/available_comparison.dart';
+import '../repository/available_comparison_repository.dart.dart';
 
 @injectable
-class GetAvailableCurrenciesUseCase {
-  final AvailableCurrencyRepository _repository;
+class GetAvailableComparisonsUseCase {
+  final AvailableComparisonRepository _repository;
 
-  GetAvailableCurrenciesUseCase(this._repository);
+  GetAvailableComparisonsUseCase(this._repository);
 
-  Future<List<AvailableCurrency>> call() {
-    return _repository.getAvailableCurrencies();
+  Future<List<AvailableComparison>> call() {
+    return _repository.getAvailableComparisons();
   }
 }
