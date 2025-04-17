@@ -3,11 +3,13 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
-import 'dart:ui' as _i5;
+import 'dart:async' as _i5;
+import 'dart:ui' as _i6;
 
 import 'package:compare_cambio/features/currency/domain/model/available_comparison.dart'
     as _i3;
+import 'package:compare_cambio/features/currency/domain/model/comparison_data.dart'
+    as _i4;
 import 'package:compare_cambio/features/currency/presentation/home/home_view_model.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -76,33 +78,50 @@ class MockHomeViewModel extends _i1.Mock implements _i2.HomeViewModel {
       );
 
   @override
+  List<_i4.ComparisonData> get comparisonHistory => (super.noSuchMethod(
+        Invocation.getter(#comparisonHistory),
+        returnValue: <_i4.ComparisonData>[],
+      ) as List<_i4.ComparisonData>);
+
+  @override
+  set comparisonHistory(List<_i4.ComparisonData>? _comparisonHistory) =>
+      super.noSuchMethod(
+        Invocation.setter(
+          #comparisonHistory,
+          _comparisonHistory,
+        ),
+        returnValueForMissingStub: null,
+      );
+
+  @override
   bool get hasListeners => (super.noSuchMethod(
         Invocation.getter(#hasListeners),
         returnValue: false,
       ) as bool);
 
   @override
-  _i4.Future<void> fetchComparisons() => (super.noSuchMethod(
+  _i5.Future<void> fetchComparisons() => (super.noSuchMethod(
         Invocation.method(
           #fetchComparisons,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
-  void selectComparison(_i3.AvailableComparison? comparison) =>
-      super.noSuchMethod(
+  _i5.Future<void> selectComparison(_i3.AvailableComparison? comparison) =>
+      (super.noSuchMethod(
         Invocation.method(
           #selectComparison,
           [comparison],
         ),
-        returnValueForMissingStub: null,
-      );
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 
   @override
-  void addListener(_i5.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -111,7 +130,7 @@ class MockHomeViewModel extends _i1.Mock implements _i2.HomeViewModel {
       );
 
   @override
-  void removeListener(_i5.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i6.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],

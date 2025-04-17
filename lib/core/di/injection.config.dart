@@ -11,14 +11,20 @@
 import 'package:compare_cambio/core/di/network_module.dart' as _i200;
 import 'package:compare_cambio/features/currency/data/repository/available_comparison_repository_impl.dart'
     as _i125;
+import 'package:compare_cambio/features/currency/data/repository/comparison_repository_impl.dart'
+    as _i1042;
 import 'package:compare_cambio/features/currency/data/services/currency_api_service.dart'
     as _i99;
 import 'package:compare_cambio/features/currency/data/storage/local_available_comparison_storage_service.dart'
     as _i1;
 import 'package:compare_cambio/features/currency/domain/repository/available_comparison_repository.dart.dart'
     as _i319;
+import 'package:compare_cambio/features/currency/domain/repository/comparison_repository.dart'
+    as _i789;
 import 'package:compare_cambio/features/currency/domain/usecase/get_available_currencies_usecase.dart'
     as _i827;
+import 'package:compare_cambio/features/currency/domain/usecase/get_comparison_data_usecase.dart'
+    as _i884;
 import 'package:compare_cambio/features/currency/presentation/home/home_view_model.dart'
     as _i799;
 import 'package:dio/dio.dart' as _i361;
@@ -42,6 +48,10 @@ extension GetItInjectableX on _i174.GetIt {
         () => _i1.LocalAvailableComparisonStorageService());
     gh.lazySingleton<_i99.CurrencyApiService>(
         () => _i99.CurrencyApiService(gh<_i361.Dio>()));
+    gh.lazySingleton<_i789.ComparisonRepository>(
+        () => _i1042.ComparisonRepositoryImpl(gh<_i99.CurrencyApiService>()));
+    gh.factory<_i884.GetComparisonDataUseCase>(
+        () => _i884.GetComparisonDataUseCase(gh<_i789.ComparisonRepository>()));
     gh.lazySingleton<_i319.AvailableComparisonRepository>(
         () => _i125.AvailableComparisonRepositoryImpl(
               gh<_i99.CurrencyApiService>(),
@@ -50,8 +60,10 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i827.GetAvailableComparisonsUseCase>(() =>
         _i827.GetAvailableComparisonsUseCase(
             gh<_i319.AvailableComparisonRepository>()));
-    gh.factory<_i799.HomeViewModel>(
-        () => _i799.HomeViewModel(gh<_i827.GetAvailableComparisonsUseCase>()));
+    gh.factory<_i799.HomeViewModel>(() => _i799.HomeViewModel(
+          gh<_i827.GetAvailableComparisonsUseCase>(),
+          gh<_i884.GetComparisonDataUseCase>(),
+        ));
     return this;
   }
 }

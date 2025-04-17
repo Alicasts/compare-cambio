@@ -7,12 +7,14 @@ import 'dart:async' as _i3;
 
 import 'package:compare_cambio/features/currency/data/dto/available_comparison_dto.dart'
     as _i4;
+import 'package:compare_cambio/features/currency/data/dto/comparison_data_dto.dart'
+    as _i5;
 import 'package:compare_cambio/features/currency/data/services/currency_api_service.dart'
     as _i2;
 import 'package:compare_cambio/features/currency/data/storage/local_available_comparison_storage_service.dart'
-    as _i5;
-import 'package:compare_cambio/features/currency/domain/model/available_comparison.dart'
     as _i6;
+import 'package:compare_cambio/features/currency/domain/model/available_comparison.dart'
+    as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -48,19 +50,34 @@ class MockCurrencyApiService extends _i1.Mock
         returnValue: _i3.Future<List<_i4.AvailableComparisonDto>>.value(
             <_i4.AvailableComparisonDto>[]),
       ) as _i3.Future<List<_i4.AvailableComparisonDto>>);
+
+  @override
+  _i3.Future<List<_i5.ComparisonDataDto>> fetchComparisonData(
+    String? pairCode, {
+    int? days = 15,
+  }) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #fetchComparisonData,
+          [pairCode],
+          {#days: days},
+        ),
+        returnValue: _i3.Future<List<_i5.ComparisonDataDto>>.value(
+            <_i5.ComparisonDataDto>[]),
+      ) as _i3.Future<List<_i5.ComparisonDataDto>>);
 }
 
 /// A class which mocks [LocalAvailableComparisonStorageService].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLocalAvailableComparisonStorageService extends _i1.Mock
-    implements _i5.LocalAvailableComparisonStorageService {
+    implements _i6.LocalAvailableComparisonStorageService {
   MockLocalAvailableComparisonStorageService() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<void> saveAll(List<_i6.AvailableComparison>? comparisons) =>
+  _i3.Future<void> saveAll(List<_i7.AvailableComparison>? comparisons) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveAll,
@@ -71,20 +88,20 @@ class MockLocalAvailableComparisonStorageService extends _i1.Mock
       ) as _i3.Future<void>);
 
   @override
-  List<_i6.AvailableComparison> getAll() => (super.noSuchMethod(
+  List<_i7.AvailableComparison> getAll() => (super.noSuchMethod(
         Invocation.method(
           #getAll,
           [],
         ),
-        returnValue: <_i6.AvailableComparison>[],
-      ) as List<_i6.AvailableComparison>);
+        returnValue: <_i7.AvailableComparison>[],
+      ) as List<_i7.AvailableComparison>);
 
   @override
-  _i6.AvailableComparison? getByPairCode(String? pairCode) =>
+  _i7.AvailableComparison? getByPairCode(String? pairCode) =>
       (super.noSuchMethod(Invocation.method(
         #getByPairCode,
         [pairCode],
-      )) as _i6.AvailableComparison?);
+      )) as _i7.AvailableComparison?);
 
   @override
   _i3.Future<void> clear() => (super.noSuchMethod(
