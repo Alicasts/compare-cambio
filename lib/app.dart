@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'features/currency/presentation/home/home_page.dart';
+import 'features/currency/presentation/root_page.dart';
 
 class CompareCambioApp extends StatelessWidget {
   const CompareCambioApp({super.key});
@@ -10,7 +10,7 @@ class CompareCambioApp extends StatelessWidget {
       title: 'Compare Câmbio',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
-      home: const HomePage(),
+      home: const RootPage(),
     );
   }
 }
