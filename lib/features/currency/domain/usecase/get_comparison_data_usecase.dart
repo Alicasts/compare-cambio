@@ -9,7 +9,7 @@ class GetComparisonDataUseCase {
 
   GetComparisonDataUseCase(this.repository);
 
-  Future<List<ComparisonData>> call(String pairCode, int days) {
-    return repository.fetchComparisonData(pairCode, days);
+  Future<List<ComparisonData>> call(String pairCode, [int days = 15]) {
+    return repository.getComparisonData(pairCode, days: days);
   }
 }

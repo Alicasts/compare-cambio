@@ -39,15 +39,11 @@ class HomeViewModel extends ChangeNotifier {
     selectedComparison = comparison;
     notifyListeners();
 
-    if (comparison == null) return;
-
     isLoading = true;
     notifyListeners();
 
-    try {
-      comparisonHistory = await _getComparisonDataUseCase(comparison.pairCode, 15);
-    } catch (e) {
-      comparisonHistory = [];
+    if (comparison != null) {
+      comparisonHistory = await _getComparisonDataUseCase(comparison.pairCode);
     }
 
     isLoading = false;
