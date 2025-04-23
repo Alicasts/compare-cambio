@@ -29,8 +29,10 @@ import 'package:compare_cambio/features/currency/domain/usecase/get_available_cu
     as _i827;
 import 'package:compare_cambio/features/currency/domain/usecase/get_comparison_data_usecase.dart'
     as _i884;
-import 'package:compare_cambio/features/currency/presentation/home/home_view_model.dart'
-    as _i799;
+import 'package:compare_cambio/features/currency/presentation/home/viewmodel/currency_conversion_view_model.dart'
+    as _i895;
+import 'package:compare_cambio/features/currency/presentation/home/viewmodel/home_view_model.dart'
+    as _i485;
 import 'package:dio/dio.dart' as _i361;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
@@ -48,6 +50,8 @@ extension GetItInjectableX on _i174.GetIt {
     );
     final networkModule = _$NetworkModule();
     gh.factory<_i660.ComparisonDataMapper>(() => _i660.ComparisonDataMapper());
+    gh.factory<_i895.CurrencyConversionViewModel>(
+        () => _i895.CurrencyConversionViewModel());
     gh.lazySingleton<_i361.Dio>(() => networkModule.dio());
     gh.lazySingleton<_i1.LocalAvailableComparisonStorageService>(
         () => _i1.LocalAvailableComparisonStorageService());
@@ -71,9 +75,10 @@ extension GetItInjectableX on _i174.GetIt {
             gh<_i319.AvailableComparisonRepository>()));
     gh.factory<_i884.GetComparisonDataUseCase>(
         () => _i884.GetComparisonDataUseCase(gh<_i789.ComparisonRepository>()));
-    gh.factory<_i799.HomeViewModel>(() => _i799.HomeViewModel(
+    gh.factory<_i485.HomeViewModel>(() => _i485.HomeViewModel(
           gh<_i827.GetAvailableComparisonsUseCase>(),
           gh<_i884.GetComparisonDataUseCase>(),
+          gh<_i895.CurrencyConversionViewModel>(),
         ));
     return this;
   }

@@ -1,8 +1,10 @@
+import 'package:compare_cambio/features/currency/presentation/home/viewmodel/currency_conversion_view_model.dart';
+import 'package:compare_cambio/features/currency/presentation/home/widgets/currency_conversion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/di/injection.dart';
-import '../home/home_view_model.dart';
+import 'viewmodel/home_view_model.dart';
 import 'widgets/currency_comparison_dropdown.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,28 +25,34 @@ class HomePage extends StatelessWidget {
             body: viewModel.isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : Stack(
-                children: [
-            AnimatedAlign(
-            duration: const Duration(milliseconds: 400),
-            curve: Curves.easeInOut,
-            alignment: viewModel.selectedComparison == null
-                ? Alignment.center
-                : Alignment.topCenter,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  CurrencyComparisonDropdown(
-                    comparisons: viewModel.comparisons,
-                    selected: viewModel.selectedComparison,
-                    onSelect: viewModel.selectComparison,
+              children: [
+                AnimatedAlign(
+                  duration: const Duration(milliseconds: 400),
+                  curve: Curves.easeInOut,
+                  alignment: viewModel.selectedComparison == null
+                      ? Alignment.center
+                      : Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CurrencyComparisonDropdown(
+                          comparisons: viewModel.comparisons,
+                          selected: viewModel.selectedComparison,
+                          onSelect: viewModel.selectComparison,
+                        ),
+                        const SizedBox(height: 24),
+                        if (viewModel.selectedComparison != null)
+                          ChangeNotifierProvider.value(
+                            value: viewModel.currencyConversionViewModel,
+                            child: const CurrencyConversionWidget(),
+                          ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
-            ),
-                ],
+                ),
+              ],
             ),
           );
         },

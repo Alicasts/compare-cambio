@@ -10,7 +10,7 @@ import 'package:compare_cambio/features/currency/domain/model/available_comparis
     as _i3;
 import 'package:compare_cambio/features/currency/domain/model/comparison_data.dart'
     as _i4;
-import 'package:compare_cambio/features/currency/presentation/home/home_view_model.dart'
+import 'package:compare_cambio/features/currency/presentation/home/viewmodel/home_view_model.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 

@@ -6,7 +6,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'package:compare_cambio/features/currency/presentation/home/home_page.dart';
-import 'package:compare_cambio/features/currency/presentation/home/home_view_model.dart';
+import 'package:compare_cambio/features/currency/presentation/home/viewmodel/home_view_model.dart';
 import 'package:compare_cambio/features/currency/domain/model/available_comparison.dart';
 import 'package:provider/provider.dart';
 

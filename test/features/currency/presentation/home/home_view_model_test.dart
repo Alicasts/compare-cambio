@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:mockito/annotations.dart';
 
-import 'package:compare_cambio/features/currency/presentation/home/home_view_model.dart';
+import 'package:compare_cambio/features/currency/presentation/home/viewmodel/home_view_model.dart';
 import 'package:compare_cambio/features/currency/domain/model/available_comparison.dart';
 
 import 'home_view_model_test.mocks.dart';
