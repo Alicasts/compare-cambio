@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../../shared/utils/input/currency_input_utils.dart';
+
 class CurrencyInputField extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
@@ -15,19 +17,6 @@ class CurrencyInputField extends StatelessWidget {
     required this.onValidValue,
   });
 
-  String _formatValue(double value) {
-    return value % 1 == 0 ? value.toStringAsFixed(0) : value.toString();
-  }
-
-  double? _parseInput(String input) {
-    final cleaned = input.replaceAll(',', '.');
-
-    if (RegExp(r'^\d+([.]\d+)?$').hasMatch(cleaned)) {
-      return double.tryParse(cleaned);
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
     return TextField(
@@ -35,7 +24,7 @@ class CurrencyInputField extends StatelessWidget {
       focusNode: focusNode,
       keyboardType: const TextInputType.numberWithOptions(decimal: true),
       inputFormatters: [
-        FilteringTextInputFormatter.allow(RegExp(r'[\d.,]*')),
+        FilteringTextInputFormatter.allow(CurrencyInputUtils.validDecimalInput),
       ],
       decoration: InputDecoration(
         labelText: label,
@@ -43,14 +32,8 @@ class CurrencyInputField extends StatelessWidget {
       ),
       onChanged: (value) {
         if (focusNode.hasFocus) {
-          final parsed = _parseInput(value);
+          final parsed = CurrencyInputUtils.tryParse(value);
           if (parsed != null) onValidValue(parsed);
-        }
-      },
-      onEditingComplete: () {
-        final parsed = _parseInput(controller.text.replaceAll(',', '.'));
-        if (parsed != null) {
-          controller.text = _formatValue(parsed);
         }
       },
     );

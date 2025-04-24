@@ -29,10 +29,16 @@ class CurrencyConversionViewModel extends ChangeNotifier {
     if (isBase) {
       _baseAmount = value;
     } else {
-      _baseAmount = _conversionRate == 0 ? 0.0 : value / _conversionRate;
+      _baseAmount = _conversionRate == 0
+          ? 0.0
+          : _roundTo4Decimals(value / _conversionRate);
     }
 
     _isUpdating = false;
     notifyListeners();
+  }
+
+  double _roundTo4Decimals(double value) {
+    return double.parse(value.toStringAsFixed(4));
   }
 }

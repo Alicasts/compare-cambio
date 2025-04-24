@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../../shared/utils/input/currency_input_utils.dart';
 import '../viewmodel/currency_conversion_view_model.dart';
 import 'currency_input_field.dart';
 
@@ -26,12 +27,27 @@ class _CurrencyConversionWidgetState extends State<CurrencyConversionWidget> {
   }
 
   void _syncControllers(CurrencyConversionViewModel vm) {
-    _baseController.text = _formatValue(vm.baseAmount);
-    _convertedController.text = _formatValue(vm.convertedAmount);
+    final baseText = CurrencyInputUtils.format(vm.baseAmount);
+    final convertedText = CurrencyInputUtils.format(vm.convertedAmount);
+
+    if (_baseController.text != baseText && !_baseFocus.hasFocus) {
+      _baseController.value = TextEditingValue(
+        text: baseText,
+        selection: TextSelection.collapsed(offset: baseText.length),
+      );
+    }
+
+    if (_convertedController.text != convertedText && !_convertedFocus.hasFocus) {
+      _convertedController.value = TextEditingValue(
+        text: convertedText,
+        selection: TextSelection.collapsed(offset: convertedText.length),
+      );
+    }
   }
 
   String _formatValue(double value) {
-    return value % 1 == 0 ? value.toStringAsFixed(0) : value.toString();
+    final fixed = value.toStringAsFixed(4);
+    return fixed.contains('.') ? fixed.replaceFirst(RegExp(r'0+$'), '').replaceFirst(RegExp(r'\.$'), '') : fixed;
   }
 
   @override
