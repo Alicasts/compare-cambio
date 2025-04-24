@@ -51,7 +51,6 @@ class HomeViewModel extends ChangeNotifier {
       comparisonHistory = await _getComparisonDataUseCase(comparison.pairCode);
 
       final latestData = comparisonHistory.first;
-      debugPrint('BATATA ${latestData.bid} ${comparison.pairCode}');
 
       _conversionViewModel.setValues(
         latestData.bid,

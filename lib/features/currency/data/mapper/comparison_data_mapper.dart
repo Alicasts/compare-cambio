@@ -12,7 +12,15 @@ class ComparisonDataMapper {
       ask: dto.ask,
       high: dto.high,
       low: dto.low,
-      pctChange: dto.pctChange,
+      pctChange: _parsePctChange(dto.pctChange),
     );
+  }
+
+  double _parsePctChange(dynamic value) {
+    if (value is num) return value.toDouble();
+    if (value is String) {
+      return double.tryParse(value.replaceAll(',', '.').replaceAll('%', '')) ?? 0.0;
+    }
+    return 0.0;
   }
 }

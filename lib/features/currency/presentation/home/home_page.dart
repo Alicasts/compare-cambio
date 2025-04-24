@@ -1,4 +1,5 @@
 import 'package:compare_cambio/features/currency/presentation/home/viewmodel/currency_conversion_view_model.dart';
+import 'package:compare_cambio/features/currency/presentation/home/widgets/comparison_chart_widget.dart';
 import 'package:compare_cambio/features/currency/presentation/home/widgets/currency_conversion_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,12 +43,14 @@ class HomePage extends StatelessWidget {
                           selected: viewModel.selectedComparison,
                           onSelect: viewModel.selectComparison,
                         ),
-                        const SizedBox(height: 24),
+                        const SizedBox(height: 40),
                         if (viewModel.selectedComparison != null)
                           ChangeNotifierProvider.value(
                             value: viewModel.currencyConversionViewModel,
                             child: const CurrencyConversionWidget(),
                           ),
+                          const SizedBox(height: 40),
+                          ComparisonChartWidget(history: viewModel.comparisonHistory),
                       ],
                     ),
                   ),
