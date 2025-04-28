@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/repository/available_comparison_repository.dart.dart';
 import '../../domain/model/available_comparison.dart';

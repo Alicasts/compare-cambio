@@ -4,7 +4,7 @@ import 'package:diacritic/diacritic.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 
-import '../../domain/model/available_comparison.dart';
+import '../../../domain/model/available_comparison.dart';
 
 class CurrencyComparisonDropdown extends StatelessWidget {
   final List<AvailableComparison> comparisons;
