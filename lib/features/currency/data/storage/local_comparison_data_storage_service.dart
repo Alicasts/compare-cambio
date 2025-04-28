@@ -8,7 +8,6 @@ import '../mapper/comparison_data_db_mapper.dart';
 @LazySingleton()
 class LocalComparisonDataStorageService {
   static const String _tableName = 'comparison_data_cache';
-  static const int _cacheTTL = 2 * 60 * 60 * 1000;
 
   Future<Database> _getDatabase() async {
     final dbPath = await getDatabasesPath();

@@ -12,7 +12,7 @@ class ComparisonRepositoryImpl implements ComparisonRepository {
   final ComparisonDataMapper _mapper;
   final LocalComparisonDataStorageService _local;
 
-  static const Duration cacheTTL = Duration(hours: 8);
+  static const Duration cacheTTL = Duration(hours: 2);
 
   ComparisonRepositoryImpl(this._api, this._mapper, this._local);
 
@@ -32,4 +32,5 @@ class ComparisonRepositoryImpl implements ComparisonRepository {
     await _local.saveComparisonData(pairCode, list);
     return list;
   }
+
 }
