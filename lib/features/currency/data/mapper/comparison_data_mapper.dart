@@ -7,7 +7,7 @@ import '../dto/comparison_data_dto.dart';
 class ComparisonDataMapper {
   ComparisonData fromDto(ComparisonDataDto dto) {
     return ComparisonData(
-      date: DateTime.fromMillisecondsSinceEpoch(int.parse(dto.timestamp)),
+      date: DateTime.fromMillisecondsSinceEpoch(int.parse(dto.timestamp) * 1000).toLocal(),
       bid: dto.bid,
       ask: dto.ask,
       high: dto.high,

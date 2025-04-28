@@ -137,7 +137,7 @@ class _ComparisonChartWidgetState extends State<ComparisonChartWidget> {
                       leftTitles: AxisTitles(
                         sideTitles: SideTitles(
                           showTitles: true,
-                          reservedSize: 8,
+                          reservedSize: 12,
                           getTitlesWidget: (value, meta) {
                             if (value == 0) {
                               return const Text('0', style: TextStyle(fontSize: 10));
@@ -156,7 +156,7 @@ class _ComparisonChartWidgetState extends State<ComparisonChartWidget> {
                             final index = value.toInt();
                             if (index < 0 || index >= widget.history.length) return const SizedBox.shrink();
                             final date = widget.history[index].date;
-                            return Text('${date.day}/${date.month}', style: const TextStyle(fontSize: 10));
+                            return Text('${date.day}', style: const TextStyle(fontSize: 10));
                           },
                         ),
                       ),
