@@ -63,6 +63,15 @@ class _ComparisonChartWidgetState extends State<ComparisonChartWidget> {
         .toList();
   }
 
+  Widget buildBottomChartLabel(DateTime date, int index, int visibleCount) {
+    final interval = (visibleCount ~/ 2).clamp(1, visibleCount);
+    final showMonth = index % interval == 0;
+    final text = showMonth
+        ? '${date.day}/${date.month.toString().padLeft(2, '0')}'
+        : '${date.day}';
+    return Text(text, style: const TextStyle(fontSize: 10));
+  }
+
   @override
   Widget build(BuildContext context) {
     if (widget.history.isEmpty) return const SizedBox.shrink();
@@ -153,10 +162,13 @@ class _ComparisonChartWidgetState extends State<ComparisonChartWidget> {
                           showTitles: true,
                           interval: 1.0,
                           getTitlesWidget: (value, meta) {
-                            final index = value.toInt();
-                            if (index < 0 || index >= widget.history.length) return const SizedBox.shrink();
-                            final date = widget.history[index].date;
-                            return Text('${date.day}', style: const TextStyle(fontSize: 10));
+                            final reversedIndex = widget.history.length - 1 - value.toInt();
+                            if (reversedIndex < 0 || reversedIndex >= widget.history.length) return const SizedBox.shrink();
+
+                            final date = widget.history[reversedIndex].date;
+                            final visibleCount = meta.max.toInt();
+
+                            return buildBottomChartLabel(date, value.toInt(), visibleCount);
                           },
                         ),
                       ),

@@ -35,23 +35,25 @@ class HomePage extends StatelessWidget {
                       : Alignment.topCenter,
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        CurrencyComparisonDropdown(
-                          comparisons: viewModel.comparisons,
-                          selected: viewModel.selectedComparison,
-                          onSelect: viewModel.selectComparison,
-                        ),
-                        const SizedBox(height: 40),
-                        if (viewModel.selectedComparison != null)
-                          ChangeNotifierProvider.value(
-                            value: viewModel.currencyConversionViewModel,
-                            child: const CurrencyConversionWidget(),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          CurrencyComparisonDropdown(
+                            comparisons: viewModel.comparisons,
+                            selected: viewModel.selectedComparison,
+                            onSelect: viewModel.selectComparison,
                           ),
                           const SizedBox(height: 40),
+                          if (viewModel.selectedComparison != null)
+                            ChangeNotifierProvider.value(
+                              value: viewModel.currencyConversionViewModel,
+                              child: const CurrencyConversionWidget(),
+                            ),
+                          const SizedBox(height: 40),
                           ComparisonChartWidget(history: viewModel.comparisonHistory),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
